@@ -11,5 +11,12 @@ export interface IBooks {
 }
 
 export interface IBooksContext {
-    books: IBooks[]
+    books: IBooks[],
+    genres: string[],
+    setGenreFilter: (value:string)=>void
+    setReviewFilter: (value:string)=>void
+    setPriceFilter: (value:string)=>void
+    genreFilter: string,
+    reviewFilter: string,
+    priceFilter: string,
 }

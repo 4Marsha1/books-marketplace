@@ -7,28 +7,29 @@ type TBookCardProp = {
 	book: IBooks;
 };
 
+export function getStars(rating: number) {
+	// Round to nearest half
+	rating = Math.round(rating * 2) / 2;
+	let output = [];
+
+	// Append all the filled whole stars
+	for (var i = rating; i >= 1; i--)
+		output.push(<IconStar color="gold" fill="gold" size="1.2rem" />);
+
+	// If there is a half a star, append it
+	if (i === 0.5)
+		output.push(<IconStar color="gold" fill="gold" size="1.2rem" />);
+
+	// Fill the empty stars
+	for (let i = 5 - rating; i >= 1; i--)
+		output.push(<IconStar color="gold" size="1.2rem" />);
+
+	return output;
+}
+
 const BookCard: FunctionComponent<TBookCardProp> = ({
 	book,
 }: TBookCardProp): ReactElement => {
-	function getStars(rating: number) {
-		// Round to nearest half
-		rating = Math.round(rating * 2) / 2;
-		let output = [];
-
-		// Append all the filled whole stars
-		for (var i = rating; i >= 1; i--)
-			output.push(<IconStar color="gold" fill="gold" />);
-
-		// If there is a half a star, append it
-		if (i === 0.5) output.push(<IconStar color="gold" fill="gold" />);
-
-		// Fill the empty stars
-		for (let i = 5 - rating; i >= 1; i--)
-			output.push(<IconStar color="gold" />);
-
-		return output;
-	}
-
 	return (
 		<Paper
 			shadow="sm"
@@ -64,7 +65,7 @@ const BookCard: FunctionComponent<TBookCardProp> = ({
 						{book.reviews}
 					</Text>
 				</Flex>
-				<Badge color="dark" size="lg" variant="filled" w="60px" h="30px">
+				<Badge color="dark" size="lg" variant="filled" w="100px" h="30px">
 					<Text weight={600} fz="lg" lh="30px">
 						${book.price}
 					</Text>
