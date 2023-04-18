@@ -1,8 +1,10 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { Flex, Text, TextInput, ActionIcon } from "@mantine/core";
 import { IconSettings, IconSearch } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar: FunctionComponent = (): ReactElement => {
+	const navigate = useNavigate();
 	return (
 		<Flex
 			justify="space-between"
@@ -16,7 +18,13 @@ const Navbar: FunctionComponent = (): ReactElement => {
 				border: `1px solid ${theme.colors.dark[4]}`,
 			})}
 		>
-			<Text fz="2rem" lh="20" weight={700}>
+			<Text
+				fz="2rem"
+				lh="20"
+				weight={700}
+				onClick={() => navigate("/")}
+				sx={{ cursor: "pointer" }}
+			>
 				Books
 			</Text>
 			<TextInput
@@ -39,6 +47,7 @@ const Navbar: FunctionComponent = (): ReactElement => {
 						backgroundColor: theme.colors.dark[5],
 					},
 				})}
+				onClick={() => navigate("/settings")}
 			>
 				<IconSettings size="2rem" />
 			</ActionIcon>
