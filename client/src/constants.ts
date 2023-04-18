@@ -1,1 +1,1 @@
-export const API_URL = "http://127.0.0.1:8000"
+export const API_URL = process.env.NODE_ENV === 'production' ? 'https://4marsha1.pythonanywhere.com/': "http://127.0.0.1:8000"
